@@ -2,6 +2,33 @@
 
 import { useEffect, useState } from "react";
 
+const INBUILT_PRODUCTS = [
+  {
+    id: 1,
+    name: "Smart Watch",
+    price: 2999,
+    category: "Electronics",
+  },
+  {
+    id: 2,
+    name: "Wireless Earbuds",
+    price: 1999,
+    category: "Audio",
+  },
+  {
+    id: 3,
+    name: "Bluetooth Speaker",
+    price: 2499,
+    category: "Audio",
+  },
+  {
+    id: 4,
+    name: "Gaming Mouse",
+    price: 1499,
+    category: "Accessories",
+  },
+];
+
 export default function DashBoard() {
   const [stats, setStats] = useState({
     products: 0,
@@ -69,6 +96,36 @@ export default function DashBoard() {
           </p>
         </div>
       </section>
+      {/* Inbuilt Products */}
+<section className="mt-8">
+  <h2 className="mb-3 text-lg font-semibold">
+    Featured Products 🛒
+  </h2>
+
+  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {INBUILT_PRODUCTS.map((product) => (
+      <div
+        key={product.id}
+        className="rounded-xl bg-white p-4 shadow hover:shadow-md transition"
+      >
+        <h3 className="text-md font-semibold">
+          {product.name}
+        </h3>
+        <p className="text-sm text-gray-500">
+          {product.category}
+        </p>
+        <p className="mt-2 text-lg font-bold text-green-600">
+          ₹{product.price}
+        </p>
+
+        <button className="mt-3 w-full rounded-lg bg-black px-3 py-2 text-sm text-white hover:bg-gray-800">
+          Add to Cart
+        </button>
+      </div>
+    ))}
+  </div>
+</section>
+
     </main>
   );
 }
