@@ -8,7 +8,62 @@ const INBUILT_PRODUCTS = [
   { id: 2, name: "Wireless Earbuds", price: 1999, category: "Audio" },
   { id: 3, name: "Bluetooth Speaker", price: 2499, category: "Audio" },
   { id: 4, name: "Gaming Mouse", price: 1499, category: "Accessories" },
+
+  // 🔥 New products
+  { id: 5, name: "Mechanical Keyboard", price: 3499, category: "Accessories" },
+  { id: 6, name: "USB-C Fast Charger", price: 999, category: "Electronics" },
+  { id: 7, name: "Noise Cancelling Headphones", price: 5499, category: "Audio" },
+  { id: 8, name: "Laptop Stand", price: 1299, category: "Accessories" },
+  { id: 9, name: "Webcam HD 1080p", price: 2199, category: "Electronics" },
+  { id: 10, name: "Portable Power Bank", price: 1799, category: "Electronics" },
 ];
+
+function MovingAdBanner() {
+  return (
+    <>
+      <style jsx>{`
+        .ad-wrapper {
+          overflow: hidden;
+          background: linear-gradient(
+            90deg,
+            #7c3aed,
+            #ec4899,
+            #ef4444
+          );
+          border-radius: 14px;
+          padding: 12px 0;
+        }
+
+        .ad-text {
+          display: inline-block;
+          white-space: nowrap;
+          padding-left: 100%;
+          font-weight: 600;
+          color: white;
+          animation: scroll 16s linear infinite;
+        }
+
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+      `}</style>
+
+      <div className="ad-wrapper">
+        <div className="ad-text">
+          🔥 Mega Sale! Up to 40% OFF on Smart Watches •
+          🎧 ₹500 OFF on Headphones •
+          ⚡ Secure Stripe Payments •
+          🛒 Vision Cart AI — Shop Smarter 🚀
+        </div>
+      </div>
+    </>
+  );
+}
 
 export default function DashBoard() {
   const [stats, setStats] = useState({
@@ -53,9 +108,9 @@ export default function DashBoard() {
 
   return (
     <main className="p-6 space-y-10 text-white">
+      <MovingAdBanner />
       {/* Header */}
       <header>
-        <h1 className="text-2xl font-bold">Dashboard</h1>
         <p className="text-gray-400">
           Welcome back to Vision Cart AI
         </p>
@@ -162,3 +217,5 @@ function StatCard({ title, value }) {
     </div>
   );
 }
+
+

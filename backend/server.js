@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("/api/chat", chatRoutes);
+app.use("/api", chatRoutes);
 app.use("/api/payment", paymentRoutes);
 
 app.listen(PORT, () => {
