@@ -17,6 +17,41 @@ const INBUILT_PRODUCTS = [
   { id: 9, name: "Webcam HD 1080p", price: 2199, category: "Electronics" },
   { id: 10, name: "Portable Power Bank", price: 1799, category: "Electronics" },
 ];
+function PolicyAgreement() {
+  const [agreed, setAgreed] = useState(false);
+
+  return (
+    <div className="mt-10 rounded-xl bg-white text-black p-4 shadow">
+      <p className="text-sm text-gray-700">
+        By using <strong>Vision Cart AI</strong>, you agree to our{" "}
+        <span className="font-semibold underline cursor-pointer">
+          Terms & Conditions
+        </span>{" "}
+        and{" "}
+        <span className="font-semibold underline cursor-pointer">
+          Privacy Policy
+        </span>.
+      </p>
+
+      <label className="mt-3 flex items-center gap-2 text-sm">
+        <input
+          type="checkbox"
+          checked={agreed}
+          onChange={() => setAgreed(!agreed)}
+          className="h-4 w-4"
+        />
+        I agree to the Terms & Conditions
+      </label>
+
+      {!agreed && (
+        <p className="mt-2 text-xs text-red-500">
+          You must agree before proceeding with payments.
+        </p>
+      )}
+    </div>
+  );
+}
+
 
 function MovingAdBanner() {
   return (
@@ -201,6 +236,7 @@ export default function DashBoard() {
           </div>
         </section>
       )}
+      <PolicyAgreement />
     </main>
   );
 }
