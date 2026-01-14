@@ -16,6 +16,8 @@ const INBUILT_PRODUCTS = [
   { id: 8, name: "Laptop Stand", price: 1299, category: "Accessories" },
   { id: 9, name: "Webcam HD 1080p", price: 2199, category: "Electronics" },
   { id: 10, name: "Portable Power Bank", price: 1799, category: "Electronics" },
+  { id:11,name:"Smartphone Gimbal",price:3999,category:"Electronics"},
+  { id:12,name:"4K Action Camera",price:4999,category:"Electronics" },
 ];
 function PolicyAgreement() {
   const [agreed, setAgreed] = useState(false);
