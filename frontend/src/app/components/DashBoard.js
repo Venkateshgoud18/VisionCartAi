@@ -53,6 +53,30 @@ function PolicyAgreement() {
     </div>
   );
 }
+function PromoBanner() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-xl shadow">
+      <img
+        src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f"
+        alt="Promotional Banner"
+        className="h-48 w-full object-cover sm:h-64"
+      />
+
+      {/* Optional overlay */}
+      <div className="absolute inset-0 bg-black/40 flex items-center">
+        <div className="px-6">
+          <h2 className="text-2xl font-bold text-white">
+            Upgrade Your Tech 🔥
+          </h2>
+          <p className="mt-1 text-sm text-gray-200">
+            Best deals on gadgets & accessories
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 
 function MovingAdBanner() {
@@ -146,6 +170,7 @@ export default function DashBoard() {
   return (
     <main className="p-6 space-y-10 text-white">
       <MovingAdBanner />
+      <PromoBanner />
       {/* Header */}
       <header>
         <p className="text-gray-400">
