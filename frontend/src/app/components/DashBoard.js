@@ -18,6 +18,9 @@ const INBUILT_PRODUCTS = [
   { id: 10, name: "Portable Power Bank", price: 1799, category: "Electronics" },
   { id:11,name:"Smartphone Gimbal",price:3999,category:"Electronics"},
   { id:12,name:"4K Action Camera",price:4999,category:"Electronics" },
+  { id:13,name:"Wireless Charging Pad",price:1499,category:"Electronics" },
+  { id:14,name:"Fitness Tracker",price:2599,category:"Electronics" },
+  { id:15,name:"VR Headset",price:7999,category:"Electronics" },
 ];
 function PolicyAgreement() {
   const [agreed, setAgreed] = useState(false);
