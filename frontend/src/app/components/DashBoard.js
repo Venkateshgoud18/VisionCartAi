@@ -21,6 +21,9 @@ const INBUILT_PRODUCTS = [
   { id:13,name:"Wireless Charging Pad",price:1499,category:"Electronics" },
   { id:14,name:"Fitness Tracker",price:2599,category:"Electronics" },
   { id:15,name:"VR Headset",price:7999,category:"Electronics" },
+  { id:16,name:"Smart Home Hub",price:3499,category:"Electronics" },
+  { id:17,name:"Digital Photo Frame",price:2299,category:"Electronics" },
+  { id:18,name:"E-Reader",price:6999,category:"Electronics" },
 ];
 function PolicyAgreement() {
   const [agreed, setAgreed] = useState(false);
