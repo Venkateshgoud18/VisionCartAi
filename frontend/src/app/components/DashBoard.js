@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Checkout from "./Checkout";
+import Location from "./Location";
 
 const INBUILT_PRODUCTS = [
   { id: 1, name: "Smart Watch", price: 2999, category: "Electronics" },
@@ -177,6 +178,7 @@ export default function DashBoard() {
     <main className="p-6 space-y-10 text-white">
       <MovingAdBanner />
       <PromoBanner />
+      <Location />
       {/* Header */}
       <header>
         <p className="text-gray-400">
