@@ -25,6 +25,8 @@ const INBUILT_PRODUCTS = [
   { id:16,name:"Smart Home Hub",price:3499,category:"Electronics" },
   { id:17,name:"Digital Photo Frame",price:2299,category:"Electronics" },
   { id:18,name:"E-Reader",price:6999,category:"Electronics" },
+  { id:19,name:"Wireless Gaming Headset",price:5999,category:"Audio" },
+  { id:20,name:"Action Camera Accessories Kit",price:1299,category:"Accessories" }
 ];
 function PolicyAgreement() {
   const [agreed, setAgreed] = useState(false);
