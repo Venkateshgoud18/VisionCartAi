@@ -29,6 +29,8 @@ const INBUILT_PRODUCTS = [
   { id:20,name:"Action Camera Accessories Kit",price:1299,category:"Accessories" },
   { id:21,name:"Smart Light Bulbs (4-pack)",price:1999,category:"Electronics" },
   { id:22,name:"Laptop Cooling Pad",price:1499,category:"Accessories" },
+  { id:23,name:"USB Hub with Power Delivery",price:1799,category:"Electronics" },
+  { id:24,name:"Smart Thermostat",price:4999,category:"Electronics" },
 ];
 function PolicyAgreement() {
   const [agreed, setAgreed] = useState(false);
