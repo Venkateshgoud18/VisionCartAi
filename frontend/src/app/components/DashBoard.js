@@ -31,8 +31,6 @@ const INBUILT_PRODUCTS = [
   { id:22,name:"Laptop Cooling Pad",price:1499,category:"Accessories" },
   { id:23,name:"USB Hub with Power Delivery",price:1799,category:"Electronics" },
   { id:24,name:"Smart Thermostat",price:4999,category:"Electronics" },
-  { id:25,name:"Wireless Presenter Remote",price:999,category:"Accessories" },
-  { id:26,name:"Portable SSD 1TB",price:8999,category:"Electronics" },
 ];
 function PolicyAgreement() {
   const [agreed, setAgreed] = useState(false);
