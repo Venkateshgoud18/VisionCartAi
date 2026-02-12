@@ -9,8 +9,6 @@ const INBUILT_PRODUCTS = [
   { id: 2, name: "Wireless Earbuds", price: 1999, category: "Audio" },
   { id: 3, name: "Bluetooth Speaker", price: 2499, category: "Audio" },
   { id: 4, name: "Gaming Mouse", price: 1499, category: "Accessories" },
-
-  // 🔥 New products
   { id: 5, name: "Mechanical Keyboard", price: 3499, category: "Accessories" },
   { id: 6, name: "USB-C Fast Charger", price: 999, category: "Electronics" },
   { id: 7, name: "Noise Cancelling Headphones", price: 5499, category: "Audio" },
@@ -33,6 +31,10 @@ const INBUILT_PRODUCTS = [
   { id:24,name:"Smart Thermostat",price:4999,category:"Electronics" },
   { id:25,name:"Wireless Presenter Remote",price:899,category:"Accessories" },
   { id:26,name:"Portable SSD 1TB",price:8999,category:"Electronics" },
+  { id:27,name:"Smart Doorbell Camera",price:3999,category:"Electronics" },
+  { id:28,name:"Bluetooth Car Adapter",price:1499,category:"Electronics" },
+  { id:29,name:"Smart Scale",price:2999,category:"Electronics" },
+  { id:30,name:"Wireless HDMI Transmitter",price:4499,category:"Electronics" },
 ];
 function PolicyAgreement() {
   const [agreed, setAgreed] = useState(false);
