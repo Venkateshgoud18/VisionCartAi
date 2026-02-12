@@ -18,9 +18,6 @@ export default function Location() {
       async (position) => {
         const { latitude, longitude } = position.coords;
         console.log("Coords:", latitude, longitude);
-
-        // ⚠️ Geolocation gives coords, NOT city
-        // For now, mock mapping:
         setCity("Hyderabad");
         setStatus("");
       },
