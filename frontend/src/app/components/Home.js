@@ -25,6 +25,11 @@ export default function Home() {
 
       const data = await res.json();
       setReply(data.reply);
+
+      // If AI successfully added a product, notify the Dashboard
+      if (data.addedProduct) {
+        window.dispatchEvent(new CustomEvent("product-added"));
+      }
     } catch (error) {
       setReply("Error contacting server");
     } finally {
