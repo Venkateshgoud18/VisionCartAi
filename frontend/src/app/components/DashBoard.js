@@ -62,7 +62,7 @@ function PolicyAgreement() {
   );
 }
 
-function PromoBanner() {
+function PromoBanner({ onExploreClick }) {
   return (
     <div className="relative w-full overflow-hidden rounded-3xl shadow-2xl group cursor-pointer mb-6 transform transition duration-500 hover:scale-[1.01]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -85,7 +85,7 @@ function PromoBanner() {
           <p className="mt-4 text-sm sm:text-base text-gray-300 font-medium">
             Discover cutting-edge tech expertly curated for you.
           </p>
-          <button className="mt-6 px-6 py-3 bg-white text-black text-sm font-bold rounded-full hover:bg-gray-200 transition shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+          <button onClick={onExploreClick} className="mt-6 px-6 py-3 bg-white text-black text-sm font-bold rounded-full hover:bg-gray-200 transition shadow-[0_0_15px_rgba(255,255,255,0.3)]">
             Explore Collection
           </button>
         </div>
@@ -127,6 +127,7 @@ export default function DashBoard() {
   const [isScannerOpen, setIsScannerOpen] = useState(false);
   const [aiSuggestions, setAiSuggestions] = useState("Based on your recent browsing activity and our predictive analytics, we highly recommend checking out the new line of Smart Watches and Wireless Earbuds.");
   const [isScanning, setIsScanning] = useState(false);
+  const [isExploreOpen, setIsExploreOpen] = useState(false);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -340,7 +341,7 @@ export default function DashBoard() {
 
         {/* Promo Banner */}
         <div className="space-y-6">
-          <PromoBanner />
+          <PromoBanner onExploreClick={() => setIsExploreOpen(true)} />
         </div>
 
         {/* Stats */}
@@ -563,6 +564,17 @@ export default function DashBoard() {
             }}
           />
         )}
+        {/* Explore Collections Modal */}
+        {isExploreOpen && (
+          <ExploreCollectionsModal 
+            onClose={() => setIsExploreOpen(false)}
+            onResult={(suggestions, theme) => {
+              setAiSuggestions(`Here's a curated collection for "${theme}": ${suggestions}. Check out our catalog below for items that match this vibe!`);
+              document.getElementById("ai-suggestions")?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          />
+        )}
+
       </div>
     </main>
   );
@@ -721,6 +733,85 @@ function StatCard({ title, value, icon, gradient }) {
         </div>
         <div className="text-3xl opacity-80 filter drop-shadow">
           {icon}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ExploreCollectionsModal({ onClose, onResult }) {
+  const [theme, setTheme] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const predefinedThemes = ["Gamer Setup 🎮", "Work from Home 💻", "Audiophile 🎧", "Smart Home 🏠"];
+
+  const handleSearch = async (query) => {
+    setIsSearching(true);
+    try {
+      const res = await fetch("http://localhost:5050/api/explore", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ theme: query }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        onResult(data.suggestions, query);
+        onClose();
+      }
+    } catch (error) {
+      console.error("Explore error:", error);
+      alert("Failed to fetch curated collection.");
+      onClose();
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
+      
+      <div className="relative w-full max-w-lg bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col p-6 animate-in zoom-in duration-300">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            <span className="text-emerald-400">✨ AI</span> Collection Explorer
+          </h3>
+          <button onClick={onClose} className="text-gray-400 hover:text-white transition">✕</button>
+        </div>
+
+        <p className="text-sm text-gray-400 mb-6 font-medium">
+          What kind of collection are you looking for? Let our AI curate the perfect gear for you.
+        </p>
+
+        <div className="flex flex-col gap-4">
+          <input
+            type="text"
+            placeholder="e.g., 'Camping gear', 'Gifts for a techie', 'Summer traveling'"
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
+          />
+          <button
+            onClick={() => handleSearch(theme)}
+            disabled={isSearching || !theme}
+            className="w-full bg-emerald-600 hover:bg-emerald-500 text-black font-black py-3 rounded-xl transition shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+          >
+            {isSearching ? "Curating..." : "Explore"}
+          </button>
+        </div>
+
+        <div className="mt-8">
+          <span className="text-xs uppercase tracking-widest text-gray-500 font-bold mb-3 block">Or Try Popular Themes</span>
+          <div className="flex flex-wrap gap-2">
+            {predefinedThemes.map((t, idx) => (
+              <button 
+                key={idx}
+                onClick={() => handleSearch(t)}
+                className="bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white px-3 py-1.5 rounded-lg text-sm transition"
+              >
+                {t}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

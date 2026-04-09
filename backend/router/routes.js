@@ -130,5 +130,36 @@ router.post("/login", async (req, res) => {
 
 
 
+router.post("/explore", async (req, res) => {
+  try {
+    const { theme } = req.body;
+
+    if (!theme || typeof theme !== "string") {
+      return res.status(400).json({
+        success: false,
+        error: "Theme is required and must be a string",
+      });
+    }
+
+    const systemPrompt = `You are a shopping assistant for Vision Cart AI.
+    The user is looking for a collection of products matching the theme: "${theme}".
+    Provide a comma-separated list of 3-5 product names or general categories that perfectly match this theme from typical tech/ecommerce catalogs.
+    Make it concise and exactly a comma-separated list.
+    Example output: Smart Watch, Wireless Earbuds, Fitness Tracker`;
+
+    const aiResponse = await getOpenAIAPIResponce(systemPrompt);
+
+    res.status(200).json({
+      success: true,
+      suggestions: aiResponse,
+    });
+  } catch (error) {
+    console.error("Explore route error:", error.message);
+    res.status(500).json({
+      success: false,
+      error: "Failed to get highly curated collection from OpenAI",
+    });
+  }
+});
 
 export default router;
