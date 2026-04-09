@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const Signup = ({ switchToLogin }) => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState(""); // ✅ use email (matches backend)
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -10,12 +11,13 @@ const Signup = ({ switchToLogin }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5050/api/signup", {
+      const response = await fetch("http://localhost:5050/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          username,
           email,      // ✅ send plain email
           password,   // ✅ send plain password
         }),
@@ -49,6 +51,15 @@ const Signup = ({ switchToLogin }) => {
         className="bg-gray-800 p-6 rounded shadow-md w-full max-w-sm"
       >
         <h2 className="text-2xl text-white mb-4">Sign Up</h2>
+
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="w-full p-2 mb-4 rounded bg-gray-700 text-white"
+          required
+        />
 
         <input
           type="email"
